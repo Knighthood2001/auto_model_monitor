@@ -10,4 +10,4 @@ pip install yagmail
 
 ## 获取授权码
 为了给QQ邮箱发送邮件，你需要使用授权码而不是密码。你可以在QQ邮箱的设置中找到它。
-![Alt text](img\1.jpg)
+![Alt text](img/1.jpg)
