@@ -240,7 +240,7 @@ if __name__ == '__main__':
         'threshold': 0.000313,  # 分数阈值
         'sender': '2109695291@qq.com',  # 发送邮箱
         'receiver': '2109695291@qq.com',  # 接收邮箱
-        'auth_code': 'ustinvphkzkubgeg',  # 请填写QQ邮箱授权码
+        'auth_code': 'xxxx',  # 请填写QQ邮箱授权码
         'check_interval': 5,  # 检查间隔 (秒) 
         'log_dir': 'model_monitor_logs',  # 日志文件夹
         'comparison_mode': 'lower',
