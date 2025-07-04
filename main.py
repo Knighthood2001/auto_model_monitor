@@ -108,17 +108,17 @@ class ModelMonitor:
             logging.error(f"邮箱配置验证失败: {str(e)}")
             raise ValueError("请检查邮箱授权码或SMTP配置")
 
-    def _default_re_parser(self, fname):
+    def _default_re_parser(self, filename):
         """从文件名中解析分数"""
-        match = re.match(r'ckpt_([0-9.]+)_\d+\.pt', fname)
+        match = re.match(r'ckpt_([0-9.]+)_\d+\.pt', filename)
         if match:
             try:
-                return float(match.group(1)), fname
+                return float(match.group(1)), filename
             except ValueError:
-                logging.warning(f"文件名 {fname} 格式无法解析")
+                logging.warning(f"文件名 {filename} 格式无法解析")
         return None, None
 
-    def _send_notification(self, score, fname):
+    def _send_notification(self, score, filename):
         """发送邮件通知（根据模式调整标题和内容）"""
         try:
             yag = yagmail.SMTP(
@@ -136,14 +136,14 @@ class ModelMonitor:
             
             contents = [
                 f'检测到新的模型文件分数{condition}：',
-                f'文件名：{fname}',
+                f'文件名：{filename}',
                 f'当前分数：{score}',
                 f'阈值：{self.threshold}',
                 f'检测时间：{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
             ]
             yag.send(to=self.receiver, subject=subject, contents=contents)
             yag.close()
-            logging.info(f"已发送通知：{fname}（分数：{score}，模式：{self.comparison_mode}）")
+            logging.info(f"已发送通知：{filename}（分数：{score}，模式：{self.comparison_mode}）")
             return True
         except Exception as e:
             logging.error(f"邮件发送失败：{str(e)}")
@@ -158,12 +158,12 @@ class ModelMonitor:
         current_best_file = None
         
         # 遍历文件夹中的文件
-        for fname in os.listdir(self.watch_dir):
-            file_path = os.path.join(self.watch_dir, fname)
+        for filename in os.listdir(self.watch_dir):
+            file_path = os.path.join(self.watch_dir, filename)
             if not os.path.isfile(file_path):
                 continue
             
-            score, valid_fname = self._default_re_parser(fname)
+            score, valid_filename = self.re_parser(filename)
             if score is None:
                 continue
             
@@ -172,12 +172,12 @@ class ModelMonitor:
                 # 低于模式：分数越小越优
                 if score < current_best_score:
                     current_best_score = score
-                    current_best_file = valid_fname
+                    current_best_file = valid_filename
             else:
                 # 高于模式：分数越大越优
                 if score > current_best_score:
                     current_best_score = score
-                    current_best_file = valid_fname
+                    current_best_file = valid_filename
         
         # 根据模式判断是否需要通知
         need_notify = False
@@ -228,16 +228,16 @@ class ModelMonitor:
 
 if __name__ == '__main__':
     # 如果需要自定义配置，请在这里修改
-    def re_parser(fname):
+    def re_parser(filename):
         # 例如文件名格式：epoch_10_val_loss_0.003_acc_0.95.pt
-        match = re.search(r'val_loss_([0-9.]+)', fname)
+        match = re.search(r'val_loss_([0-9.]+)_', filename)
         if match:
-            return float(match.group(1)), fname
+            return float(match.group(1)), filename
         return None, None
     # 配置参数
     CONFIG = {
         'watch_dir': './DPUNet_2025_07_04__15_51_01',  # 监控的文件夹
-        'threshold': 0.000313,  # 分数阈值
+        'threshold': 0.004,  # 分数阈值
         'sender': '2109695291@qq.com',  # 发送邮箱
         'receiver': '2109695291@qq.com',  # 接收邮箱
         'auth_code': 'xxxx',  # 请填写QQ邮箱授权码
