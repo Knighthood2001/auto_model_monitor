@@ -7,7 +7,7 @@ import yagmail
 
 class ModelMonitor:
     def __init__(self, watch_dir, threshold, sender, receiver, auth_code, 
-                 check_interval=60, log_dir='monitor_logs', comparison_mode='lower'):
+                 check_interval=60, log_dir='monitor_logs', comparison_mode='lower',re_parser=None):
         """
         模型权重监控器初始化
         :param watch_dir: 监控的文件夹路径
@@ -17,6 +17,8 @@ class ModelMonitor:
         :param auth_code: 邮箱授权码
         :param check_interval: 检查间隔 (秒) , 默认60秒
         :param log_dir: 日志文件夹路径
+        :param comparison_mode: 比较模式, 可选 'lower' (低于阈值) 或 'higher' (高于阈值), 默认为 'lower'
+        :param re_parser: 正则表达式解析器, 用于从文件名中提取指定内容, 默认为 None (不使用正则表达式)
         """
         self.watch_dir = watch_dir
         self.threshold = threshold
@@ -43,6 +45,7 @@ class ModelMonitor:
         
         # 验证邮箱配置
         self._verify_email_config()
+        self.re_parser = re_parser or self._default_re_parser
 
 
     def _init_logger(self):
@@ -105,7 +108,7 @@ class ModelMonitor:
             logging.error(f"邮箱配置验证失败: {str(e)}")
             raise ValueError("请检查邮箱授权码或SMTP配置")
 
-    def _parse_score_from_filename(self, fname):
+    def _default_re_parser(self, fname):
         """从文件名中解析分数"""
         match = re.match(r'ckpt_([0-9.]+)_\d+\.pt', fname)
         if match:
@@ -160,7 +163,7 @@ class ModelMonitor:
             if not os.path.isfile(file_path):
                 continue
             
-            score, valid_fname = self._parse_score_from_filename(fname)
+            score, valid_fname = self._default_re_parser(fname)
             if score is None:
                 continue
             
@@ -224,16 +227,24 @@ class ModelMonitor:
 
 
 if __name__ == '__main__':
+    # 如果需要自定义配置，请在这里修改
+    def re_parser(fname):
+        # 例如文件名格式：epoch_10_val_loss_0.003_acc_0.95.pt
+        match = re.search(r'val_loss_([0-9.]+)', fname)
+        if match:
+            return float(match.group(1)), fname
+        return None, None
     # 配置参数
     CONFIG = {
         'watch_dir': './DPUNet_2025_07_04__15_51_01',  # 监控的文件夹
         'threshold': 0.000313,  # 分数阈值
         'sender': '2109695291@qq.com',  # 发送邮箱
         'receiver': '2109695291@qq.com',  # 接收邮箱
-        'auth_code': 'xxxx',  # 请填写QQ邮箱授权码
-        'check_interval': 60*60,  # 检查间隔 (秒) 
+        'auth_code': 'ustinvphkzkubgeg',  # 请填写QQ邮箱授权码
+        'check_interval': 5,  # 检查间隔 (秒) 
         'log_dir': 'model_monitor_logs',  # 日志文件夹
-        'comparison_mode': 'lower'
+        'comparison_mode': 'lower',
+        # 're_parser': re_parser
     }
 
     # 初始化并启动监控器
