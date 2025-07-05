@@ -14,7 +14,9 @@ class MonitorConfig:
     log_dir: str = 'monitor_logs'
     comparison_mode: str = 'lower'
     parser: Optional[BaseParser] = None
-    
+    email_subject_template: str = None  
+    email_content_template: str = None
+    email_content_generator: callable = None    
     def __post_init__(self):
         # 验证比较模式
         if self.comparison_mode not in ['lower', 'higher']:

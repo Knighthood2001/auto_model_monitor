@@ -14,7 +14,10 @@ class ModelMonitor:
             receiver=config.receiver,
             auth_code=config.auth_code,
             mode=config.comparison_mode,
-            threshold=config.threshold  
+            threshold=config.threshold,
+            subject_template=config.email_subject_template,  # 传递主题模板
+            content_template=config.email_content_template,
+            content_generator=config.email_content_generator,
         )
         
         # 初始化状态
