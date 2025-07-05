@@ -14,3 +14,9 @@ pip install yagmail
 **[https://service.mail.qq.com/detail/0/75](https://service.mail.qq.com/detail/0/75)**
 
 ![Alt text](img/1.jpg)
+
+配置后，你就可以使用代码了
+
+效果如下：
+
+![Alt text](img/2.jpg)

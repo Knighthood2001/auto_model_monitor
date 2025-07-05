@@ -146,7 +146,7 @@ class ModelMonitor:
             logging.info(f"已发送通知：{filename}（分数：{score}，模式：{self.comparison_mode}）")
             return True
         except Exception as e:
-            logging.error(f"邮件发送失败：{str(e)}")
+            logging.error(f"邮件发送失败: {str(e)}")
             return False
     def _check_new_files(self):
         """检查文件夹中的新文件并判断是否需要通知（根据模式动态调整逻辑）"""
