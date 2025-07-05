@@ -1,0 +1,34 @@
+2025-07-05 16:26:53 - root - INFO - root 日志器初始化完成，日志文件路径: model_monitor_logs/20250705/monitor_20250705162653.log
+2025-07-05 16:26:53 - root - INFO - 模型监控器初始化完成
+2025-07-05 16:26:53 - root - INFO - 开始监控文件夹: ./quicktest/logs (阈值: 0.004)
+2025-07-05 16:26:53 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:26:53 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:26:58 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:26:58 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:03 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:04 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:09 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:09 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:14 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:14 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:19 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:20 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:25 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:25 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:30 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:30 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:35 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:36 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:41 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:41 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:46 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:46 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:51 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:52 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:27:57 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:27:57 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:28:02 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:28:02 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:28:07 - root - INFO - 发现更优分数: 0.00075 (文件: ckpt_0.000750_12000.pt)
+2025-07-05 16:28:08 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 16:28:10 - root - INFO - 监控已手动停止

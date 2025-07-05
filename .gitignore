@@ -1,2 +1,4 @@
 DPUNet_2025_07_04__15_51_01/
 test.py
+model_monitor.egg-info
+*.egg-info
