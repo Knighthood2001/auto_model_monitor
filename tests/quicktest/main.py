@@ -34,9 +34,9 @@ class ModelMonitor:
 
         # 初始化状态变量
         if self.comparison_mode == 'lower':
-            self.last_reported_score = float('inf')  # 低于模式：初始为无穷大（越小越好）
+            self.last_reported_score = float('inf')  # 低于模式: 初始为无穷大（越小越好）
         else:
-            self.last_reported_score = -float('inf')  # 高于模式：初始为负无穷大（越大越好）
+            self.last_reported_score = -float('inf')  # 高于模式: 初始为负无穷大（越大越好）
 
         self.reported_files = set()  # 记录已播报过的文件
         
@@ -135,15 +135,15 @@ class ModelMonitor:
                 condition = '高于阈值'
             
             contents = [
-                f'检测到新的模型文件分数{condition}：',
-                f'文件名：{filename}',
-                f'当前分数：{score}',
-                f'阈值：{self.threshold}',
-                f'检测时间：{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
+                f'检测到新的模型文件分数{condition}: ',
+                f'文件名: {filename}',
+                f'当前分数: {score}',
+                f'阈值: {self.threshold}',
+                f'检测时间: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
             ]
             yag.send(to=self.receiver, subject=subject, contents=contents)
             yag.close()
-            logging.info(f"已发送通知：{filename}（分数：{score}，模式：{self.comparison_mode}）")
+            logging.info(f"已发送通知: {filename}（分数: {score}，模式: {self.comparison_mode}）")
             return True
         except Exception as e:
             logging.error(f"邮件发送失败: {str(e)}")
@@ -169,12 +169,12 @@ class ModelMonitor:
             
             # 根据模式更新“当前最佳分数”
             if self.comparison_mode == 'lower':
-                # 低于模式：分数越小越优
+                # 低于模式: 分数越小越优
                 if score < current_best_score:
                     current_best_score = score
                     current_best_file = valid_filename
             else:
-                # 高于模式：分数越大越优
+                # 高于模式: 分数越大越优
                 if score > current_best_score:
                     current_best_score = score
                     current_best_file = valid_filename
@@ -182,20 +182,20 @@ class ModelMonitor:
         # 根据模式判断是否需要通知
         need_notify = False
         if self.comparison_mode == 'lower':
-            # 低于模式：当前最佳分数 < 阈值 时需要判断
+            # 低于模式: 当前最佳分数 < 阈值 时需要判断
             need_notify = current_best_score < self.threshold
         else:
-            # 高于模式：当前最佳分数 > 阈值 时需要判断
+            # 高于模式: 当前最佳分数 > 阈值 时需要判断
             need_notify = current_best_score > self.threshold
         
         if need_notify:
             # 根据模式判断是否“优于上次播报”
             is_better = False
             if self.comparison_mode == 'lower':
-                # 低于模式：当前分数 < 上次分数 → 更优
+                # 低于模式: 当前分数 < 上次分数 → 更优
                 is_better = current_best_score < self.last_reported_score
             else:
-                # 高于模式：当前分数 > 上次分数 → 更优
+                # 高于模式: 当前分数 > 上次分数 → 更优
                 is_better = current_best_score > self.last_reported_score
             
             if is_better:
@@ -229,7 +229,7 @@ class ModelMonitor:
 if __name__ == '__main__':
     # 如果需要自定义配置，请在这里修改
     def re_parser(filename):
-        # 例如文件名格式：epoch_10_val_loss_0.003_acc_0.95.pt
+        # 例如文件名格式: epoch_10_val_loss_0.003_acc_0.95.pt
         match = re.search(r'val_loss_([0-9.]+)_', filename)
         if match:
             return float(match.group(1)), filename
