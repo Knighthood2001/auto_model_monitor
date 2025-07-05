@@ -17,7 +17,11 @@ pip install auto_model_monitor
 
 **[https://service.mail.qq.com/detail/0/75](https://service.mail.qq.com/detail/0/75)**
 
-![Alt text](img/1.jpg)
+<!-- ![Alt text](img/1.jpg) -->
+
+<img src="https://github.com/Knighthood2001/auto_model_monitor/blob/main/img/1.jpg" alt="QQ授权码" width="50%">
+
+
 
 ## 示例代码
 上述配置后，你就可以使用代码了。
@@ -52,7 +56,10 @@ monitor.start_monitoring()
 
 当你的模型权重文件中的分数低于或高于阈值时，你将收到邮件通知。例如：
 
-![Alt text](img/2.jpg)
+<!-- ![Alt text](img/2.jpg) -->
+
+<img src="https://github.com/Knighthood2001/auto_model_monitor/blob/main/img/2.jpg" alt="图2" width="50%">
+
 
 ### 自定义使用1
 测试代码在[tests/custom_test1.py](tests/custom_test1.py)
@@ -95,9 +102,13 @@ monitor.start_monitoring()
 
 收到的邮件内容如下所示：
 
-![Alt text](img/111.jpg)
+<!-- ![Alt text](img/111.jpg) -->
+
+<img src="https://github.com/Knighthood2001/auto_model_monitor/blob/main/img/111.jpg" alt="自定义使用图1" width="50%">
+
 
 ### 自定义使用2
+
 测试代码在[tests/custom_test2.py](tests/custom_test2.py)
 
 你可以自定义邮件的内容生成器。例如：
@@ -156,12 +167,14 @@ config = MonitorConfig(
 )
 monitor = ModelMonitor(config)
 monitor.start_monitoring()
-
 ```
 
 收到的邮件内容如下所示：
 
-![Alt text](img/222.jpg)
+<!-- ![Alt text](img/222.jpg) -->
+
+<img src="https://github.com/Knighthood2001/auto_model_monitor/blob/main/img/222.jpg" alt="自定义使用图2" width="50%">
+
 # 开发日志
 
 2025-07-04 更新：
@@ -185,3 +198,6 @@ v0.1.2
 
 v0.2.0
 - 添加自定义主题和内容，方便用户自定义邮件内容
+
+v0.2.1
+- 修复PyPI图片无法显示问题
