@@ -27,7 +27,7 @@ pip install auto_model_monitor
 ```python
 from auto_model_monitor import ModelMonitor, MonitorConfig, CustomParser
 
-# 自定义解析器
+# 自定义解析器(TODO: 替换为你的自定义解析器')
 parser = CustomParser(pattern=r'val_loss_([0-9.]+)_')
 
 # 配置参数
@@ -36,7 +36,7 @@ config = MonitorConfig(
     threshold=0.004,                  # 阈值
     sender='2109695291@qq.com',       # 发送邮箱
     receiver='2109695291@qq.com',     # 接收邮箱
-    auth_code='xxxx',                 # 邮箱授权码
+    auth_code='xxxx',                 # 邮箱授权码(TODO: 替换为你的授权码')
     check_interval=5,                 # 检查间隔 (秒)
     log_dir='model_monitor_logs',     # 日志文件夹路径
     comparison_mode='lower',          # 比较模式
@@ -47,6 +47,8 @@ config = MonitorConfig(
 monitor = ModelMonitor(config)
 monitor.start_monitoring()
 ```
+**注意：** 你需要修改解析器，以及你自己的邮箱授权码。
+
 当你的模型权重文件中的分数低于或高于阈值时，你将收到邮件通知。例如：
 
 ![Alt text](img/2.jpg)
@@ -61,3 +63,13 @@ monitor.start_monitoring()
 - 代码重构。如果你需要重构前的代码，在[tests/quicktest](tests/quicktest/demo.py)中查看。
 - 代码打包，上传PyPI。
 - 由于`model_monitor`这个名字已经被占用，改为`auto_model_monitor`。
+
+# PyPI库版本
+v0.1.0
+- 基础版本
+
+v0.1.1
+- 代码重构
+
+v0.1.2
+- 完善README.md

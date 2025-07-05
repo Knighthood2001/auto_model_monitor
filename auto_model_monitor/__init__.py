@@ -4,4 +4,4 @@ from .notifier import BaseNotifier, EmailNotifier
 from .config import MonitorConfig
 from .utils import setup_logger
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'

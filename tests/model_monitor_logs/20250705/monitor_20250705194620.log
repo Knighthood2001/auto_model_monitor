@@ -1,0 +1,8 @@
+2025-07-05 19:46:20 - root - INFO - root 日志器初始化完成，日志文件路径: model_monitor_logs/20250705/monitor_20250705194620.log
+2025-07-05 19:46:20 - root - INFO - 模型监控器初始化完成
+2025-07-05 19:46:20 - root - INFO - 开始监控文件夹: ./quicktest/logs (阈值: 0.004)
+2025-07-05 19:46:20 - root - INFO - 发现更优分数: 0.003 (文件: epoch_10_val_loss_0.003_acc_0.95.pt)
+2025-07-05 19:46:20 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 19:46:25 - root - INFO - 发现更优分数: 0.003 (文件: epoch_10_val_loss_0.003_acc_0.95.pt)
+2025-07-05 19:46:26 - root - ERROR - 邮件发送失败: Connection unexpectedly closed
+2025-07-05 19:46:28 - root - INFO - 监控已手动停止
