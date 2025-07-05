@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='model_monitor',
-    version='0.1.0',
+    name='auto_model_monitor',
+    version='0.1.1',
     description='A tool for monitoring model checkpoints and sending notifications',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',

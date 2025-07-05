@@ -18,8 +18,8 @@ class DefaultParser(BaseParser):
         return None, None
 
 class CustomParser(BaseParser):
-    """自定义解析器，匹配 val_loss_<score>_acc_<acc>.pt 格式"""
-    def __init__(self, pattern=r'val_loss_([0-9.]+)_'):
+    """自定义解析器，匹配你需要的格式"""
+    def __init__(self, pattern):
         self.pattern = pattern
     
     def parse(self, filename: str):
