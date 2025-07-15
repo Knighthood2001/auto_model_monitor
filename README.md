@@ -1,5 +1,10 @@
 # auto_model_monitor
 
+<h1 align="center">
+  <b>训练等待多煎熬，邮件一响指标晓</b>
+  
+</h1>
+
 监视模型训练时生成的权重文件，符合条件时发送QQ邮件通知。
 
 # 使用场景
@@ -9,7 +14,7 @@
 # 如何使用
 ## 安装依赖
 ```bash
-pip install auto_model_monitor
+pip install auto-model-monitor
 ```
 
 ## 获取QQ授权码
@@ -19,7 +24,7 @@ pip install auto_model_monitor
 
 <!-- ![Alt text](img/1.jpg) -->
 
-<img src="https://github.com/Knighthood2001/auto_model_monitor/blob/main/img/1.jpg" alt="QQ授权码" width="50%">
+<img src="https://raw.githubusercontent.com/Knighthood2001/auto_model_monitor/main/img/1.jpg" alt="QQ授权码" width="50%">
 
 
 
@@ -52,13 +57,30 @@ config = MonitorConfig(
 monitor = ModelMonitor(config)
 monitor.start_monitoring()
 ```
-**注意：** 你需要修改解析器，以及你自己的邮箱授权码。
+
+#### 配置参数说明  
+在使用前，需通过 `MonitorConfig` 配置以下参数：  
+
+| 参数名          | 含义说明                                                                 | 示例/取值范围                  |  
+|-----------------|--------------------------------------------------------------------------|---------------------------------|  
+| `watch_dir`     | 需要监控的文件夹路径（日志文件所在目录）                                 | `./quicktest/logs`（相对路径）  |  
+| `threshold`     | 触发监控动作的阈值（根据业务场景定义，比如指标波动阈值）                 | `0.004`（数值型，根据需求调整） |  
+| `sender`        | 发送通知的邮箱地址                                                       | `aaaa@qq.com`                   |  
+| `receiver`      | 接收通知的邮箱地址                                                       | `aaaa@qq.com`       |  
+| `auth_code`     | 发送邮箱的授权码（需在邮箱服务商处获取，如 QQ 邮箱的 SMTP 授权码）       | `xxxx`（替换为实际授权码）      |  
+| `check_interval`| 监控检查的时间间隔（单位：秒）                                           | `5`（建议根据日志更新频率调整） |  
+| `log_dir`       | 项目自身运行日志的存储目录                                               | `model_monitor_logs`            |  
+| `comparison_mode`| 阈值比较模式（`'lower'` 表示“低于阈值时触发”，`'higher'` 表示“高于时触发”） | `'lower'` / `'higher'`          |  
+| `parser`        | 自定义日志解析器（需实现特定接口，用于解析 `watch_dir` 中的日志内容）     | 需继承 `BaseParser` 类          |  
+
+
 
 当你的模型权重文件中的分数低于或高于阈值时，你将收到邮件通知。例如：
 
 <!-- ![Alt text](img/2.jpg) -->
 
-<img src="https://github.com/Knighthood2001/auto_model_monitor/blob/main/img/2.jpg" alt="图2" width="50%">
+
+<img src="https://raw.githubusercontent.com/Knighthood2001/auto_model_monitor/main/img/2.jpg" alt="图2" width="50%">
 
 
 ### 自定义使用1
@@ -104,7 +126,7 @@ monitor.start_monitoring()
 
 <!-- ![Alt text](img/111.jpg) -->
 
-<img src="https://github.com/Knighthood2001/auto_model_monitor/blob/main/img/111.jpg" alt="自定义使用图1" width="50%">
+<img src="https://raw.githubusercontent.com/Knighthood2001/auto_model_monitor/main/img/111.jpg" alt="自定义使用图1" width="50%">
 
 
 ### 自定义使用2
@@ -173,7 +195,7 @@ monitor.start_monitoring()
 
 <!-- ![Alt text](img/222.jpg) -->
 
-<img src="https://github.com/Knighthood2001/auto_model_monitor/blob/main/img/222.jpg" alt="自定义使用图2" width="50%">
+<img src="https://raw.githubusercontent.com/Knighthood2001/auto_model_monitor/main/img/222.jpg" alt="自定义使用图2" width="50%">
 
 # 开发日志
 
@@ -185,6 +207,9 @@ monitor.start_monitoring()
 - 代码打包，上传PyPI。
 - 由于`model_monitor`这个名字已经被占用，改为`auto_model_monitor`。
 - 发布v0.2.0版本。
+
+2025-07-15 更新：
+- 完善README.md，将github图片变成网址。
 
 # PyPI库版本
 v0.1.0
@@ -200,4 +225,7 @@ v0.2.0
 - 添加自定义主题和内容，方便用户自定义邮件内容
 
 v0.2.1
+- 修复PyPI图片无法显示问题
+
+v0.2.2
 - 修复PyPI图片无法显示问题
